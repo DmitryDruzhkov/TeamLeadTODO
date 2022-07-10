@@ -1,0 +1,5 @@
+<app-todo-new></app-todo-new>
+<app-todo-item 
+  *ngFor="let item of items$ | async; trackBy:trackBy"
+  [item]="item"
+></app-todo-item>

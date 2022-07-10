@@ -1,0 +1,10 @@
+<div class="todo-item">
+  <mat-checkbox 
+    [checked]="item?.complited"
+    (ngModelChange)="onSetComplite()">
+  </mat-checkbox>
+  <div [routerLink]="'/item/' + item?.id">
+    {{item?.description}}
+  </div>
+</div>
+<mat-divider></mat-divider>

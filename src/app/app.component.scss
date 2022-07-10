@@ -1,0 +1,15 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 64px;
+
+  &__content {
+    min-width: 700px;
+  }
+
+  &__navigation {
+    display: flex;
+  }
+}
