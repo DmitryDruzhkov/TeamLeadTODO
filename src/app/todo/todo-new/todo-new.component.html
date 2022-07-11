@@ -1,6 +1,1 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Новая задача</mat-label>
-    <input matInput (focusout)="onCreateItem()" (keyup.enter)="onCreateItem()" [formControl]="descriptionFormControl" placeholder="Нужно сделать...">
-  </mat-form-field>
-</form>
+<app-todo-new-input (createItem)="onCreateItem($event)"></app-todo-new-input>

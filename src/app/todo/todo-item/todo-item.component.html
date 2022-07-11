@@ -1,10 +1,36 @@
 <div class="todo-item">
-  <mat-checkbox 
-    [checked]="item?.complited"
-    (ngModelChange)="onSetComplite()">
-  </mat-checkbox>
-  <div [routerLink]="'/item/' + item?.id">
-    {{item?.description}}
+  <div class="todo-item__label">
+    <mat-checkbox 
+      [checked]="item?.complited"
+      (ngModelChange)="onSetComplite()">
+    </mat-checkbox>
+    <ng-container *ngTemplateOutlet="item?.description ? readDesc : writeDesk"></ng-container>
+    
+  </div>
+  <div class="todo-item__buttons">
+    <button (click)="onCreateSubTask()" mat-button>Подзадача</button>
+    <div>
+      Время
+    </div>
+    <div>
+      Напомнить
+    </div>
+    <div>
+      Тип
+    </div>
   </div>
 </div>
 <mat-divider></mat-divider>
+<div class="todo-item__subtask">
+  <app-todo-item [item]="subTask" *ngFor="let subTask of item?.subtasks"></app-todo-item>
+</div>
+
+<ng-template #readDesc>
+  <div [routerLink]="'/item/' + item?.id" class="todo-item__link">
+    {{item?.description}}
+  </div>
+</ng-template>
+
+<ng-template #writeDesk>
+  <input>
+</ng-template>

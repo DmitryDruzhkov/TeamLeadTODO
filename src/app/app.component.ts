@@ -1,19 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-root',
   imports: [
     CommonModule,
     MainPageComponent,
-    RouterModule
+    RouterModule,
+    MatTabsModule,
   ],
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  title = 'TODO';
-}
+export class AppComponent {}

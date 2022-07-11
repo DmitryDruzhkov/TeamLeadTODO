@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,7 +7,8 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './todo-item-page.component.html',
-  styleUrls: ['./todo-item-page.component.scss']
+  styleUrls: ['./todo-item-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoItemPageComponent implements OnInit {
 

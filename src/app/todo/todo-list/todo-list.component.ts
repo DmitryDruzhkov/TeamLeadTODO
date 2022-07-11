@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TodoItemsService } from '../services/todo-items.service';
 import { TodoItem } from '../shared/interfaces';
@@ -15,7 +15,8 @@ import { TodoNewComponent } from '../todo-new/todo-new.component';
   ],
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
+  styleUrls: ['./todo-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoListComponent implements OnInit {
 

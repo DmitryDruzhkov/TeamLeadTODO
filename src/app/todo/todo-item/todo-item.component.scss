@@ -1,3 +1,22 @@
 .todo-item {
+  display: flex;
+  justify-content: space-between;
   margin: 18px 0;
+
+  &__label {
+    display: flex;
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__link {
+    cursor: pointer;
+    margin-left: 8px;
+  }
+
+  &__subtask {
+    padding-left: 16px;
+  }
 }

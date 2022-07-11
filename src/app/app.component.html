@@ -1,15 +1,23 @@
 <div class="main">
   <div class="main__content">
     <div class="main__navigation">
-      <div [routerLink]="'/'">
-        Сегодня
-      </div>
-      <div>
-        Бэклог
-      </div>
-      <div>
-        История
-      </div>
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link
+          [routerLink]="'/'"
+          routerLinkActive #rla="routerLinkActive">
+          Сегодня
+        </a>
+        <a mat-tab-link
+          [routerLink]="'/backlog'"
+          routerLinkActive #rla="routerLinkActive">
+          Бэклог
+        </a>
+        <a mat-tab-link
+          [routerLink]="'/history'"
+          routerLinkActive #rla="routerLinkActive">
+          История
+        </a>
+      </nav>
       <div>
         Новый день
       </div>  
