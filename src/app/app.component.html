@@ -3,24 +3,26 @@
     <div class="main__navigation">
       <nav mat-tab-nav-bar>
         <a mat-tab-link
+          (click)="onOpenDialog()"
+          routerLinkActive="main__navigation-active">
+          Новый день
+        </a>
+        <a mat-tab-link
           [routerLink]="'/'"
-          routerLinkActive #rla="routerLinkActive">
+          routerLinkActive="main__navigation-active">
           Сегодня
         </a>
         <a mat-tab-link
           [routerLink]="'/backlog'"
-          routerLinkActive #rla="routerLinkActive">
+          routerLinkActive="main__navigation-active">
           Бэклог
         </a>
         <a mat-tab-link
           [routerLink]="'/history'"
-          routerLinkActive #rla="routerLinkActive">
+          routerLinkActive="main__navigation-active">
           История
         </a>
-      </nav>
-      <div>
-        Новый день
-      </div>  
+      </nav>  
     </div>
     <router-outlet></router-outlet>
   </div>

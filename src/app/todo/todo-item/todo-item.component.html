@@ -2,7 +2,7 @@
   <div class="todo-item__label">
     <mat-checkbox 
       [checked]="item?.complited"
-      (ngModelChange)="onSetComplite()">
+      (change)="onSetComplite()">
     </mat-checkbox>
     <ng-container *ngTemplateOutlet="item?.description ? readDesc : writeDesk"></ng-container>
     

@@ -20,7 +20,7 @@ import { TodoNewComponent } from '../todo-new/todo-new.component';
 })
 export class TodoListComponent implements OnInit {
 
-  public items$: Observable<TodoItem[]> = inject(TodoItemsService).openItems$;
+  public items$: Observable<TodoItem[]> = inject(TodoItemsService).todayItems$;
 
   constructor() { }
 

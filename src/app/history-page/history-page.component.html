@@ -1,1 +1,4 @@
-<p>history-page works!</p>
+<app-todo-item 
+  *ngFor="let item of historyItems$ | async; trackBy:trackBy"
+  [item]="item"
+></app-todo-item>

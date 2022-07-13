@@ -1,1 +1,4 @@
-<p>backlog-page works!</p>
+<app-todo-item 
+  *ngFor="let item of backlogTodoItems$ | async; trackBy:trackBy"
+  [item]="item"
+></app-todo-item>

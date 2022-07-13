@@ -1,18 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TodoItemsService } from '../todo/services/todo-items.service';
+import { TodoItemComponent } from '../todo/todo-item/todo-item.component';
+import { TodoItem } from '../todo/shared/interfaces';
 
 @Component({
   selector: 'app-backlog-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    TodoItemComponent,
+  ],
   templateUrl: './backlog-page.component.html',
-  styleUrls: ['./backlog-page.component.scss']
+  styleUrls: ['./backlog-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BacklogPageComponent implements OnInit {
+export class BacklogPageComponent {
 
-  constructor() { }
+  public backlogTodoItems$ = inject(TodoItemsService).backlogItems$;
 
-  ngOnInit(): void {
+  public trackBy(id: number, item: TodoItem): number {
+    return item.id;
   }
 
 }

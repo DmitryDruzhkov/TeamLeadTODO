@@ -15,15 +15,13 @@ import { createTask } from '../shared/todo-helper';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoItemComponent implements OnInit {
-  @Input() item: TodoItem | undefined;
-
-  constructor() { }
+  @Input() item: TodoItem;
 
   public ngOnInit(): void {
   }
 
   public onSetComplite(): void {
-
+    this.item.complited = !this.item?.complited;
   }
 
   public onCreateSubTask(): void {

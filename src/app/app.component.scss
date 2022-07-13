@@ -11,5 +11,10 @@
 
   &__navigation {
     display: flex;
+    margin-bottom: 16px;
+
+    &-active {
+      font-weight: bold;
+    }
   }
 }
