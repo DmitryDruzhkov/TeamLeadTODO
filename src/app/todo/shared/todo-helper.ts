@@ -5,6 +5,10 @@ export const createTask = (description: string): TodoItem => {
     id: new Date().getTime(),
     description,
     complited: false,
-    subtasks: []
+    subtasks: [],
+    type: {
+      name: '',
+      color: ''
+    },
   };
 }

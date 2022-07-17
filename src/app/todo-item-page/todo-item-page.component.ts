@@ -1,24 +1,19 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { TodoItemDetailComponent } from '../todo-item-detail/todo-item-detail.component';
 
 @Component({
   selector: 'app-todo-item-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    TodoItemDetailComponent,
+  ],
   templateUrl: './todo-item-page.component.html',
   styleUrls: ['./todo-item-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoItemPageComponent implements OnInit {
-
-  private route = inject(ActivatedRoute);
-
-  constructor() { 
-    console.log(this.route.snapshot.paramMap.get('bank'));
-  }
-
-  ngOnInit(): void {
-  }
-
+export class TodoItemPageComponent {
+  public itemId: number = +(inject(ActivatedRoute).snapshot.paramMap.get('id') || 0);
 }

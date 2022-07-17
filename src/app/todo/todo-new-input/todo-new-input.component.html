@@ -1,6 +1,6 @@
 <form class="example-form">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Новая задача</mat-label>
-    <input matInput (focusout)="onCreateItem()" (keyup.enter)="onCreateItem()" [formControl]="descriptionFormControl" placeholder="Нужно сделать...">
+    <input matInput #todoInput (focusout)="onCreateItem()" (keyup.enter)="onCreateItem()" [formControl]="descriptionFormControl" placeholder="Нужно сделать..." cdkFocusInitial>
   </mat-form-field>
 </form>

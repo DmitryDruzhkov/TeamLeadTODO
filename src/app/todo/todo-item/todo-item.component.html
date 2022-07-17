@@ -8,25 +8,34 @@
     
   </div>
   <div class="todo-item__buttons">
-    <button (click)="onCreateSubTask()" mat-button>Подзадача</button>
-    <div>
-      Время
-    </div>
-    <div>
-      Напомнить
-    </div>
-    <div>
-      Тип
-    </div>
+    <button (click)="onChangeVisibleNewTodo()" [disabled]="isCreateSubTusk$ | async" mat-icon-button aria-label="Добавить подзадачу">
+      <mat-icon>add_box</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Указать срок задачи">
+      <mat-icon>today</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Задать напоминание">
+      <mat-icon>access_alarm</mat-icon>
+    </button>
+    <button [style]="'background-color: ' + item.type.color" (click)="onSetType()" mat-icon-button aria-label="Тип задачи">
+      {{item.type.name}}
+    </button>
   </div>
 </div>
-<mat-divider></mat-divider>
+<mat-divider class="todo-item__divider"></mat-divider>
+<ng-container>
+
+</ng-container>
+<app-todo-new-input *ngIf="isCreateSubTusk$ | async" [isInitFocus]="true" (createItem)="onCreateSubTask($event)"></app-todo-new-input>
 <div class="todo-item__subtask">
   <app-todo-item [item]="subTask" *ngFor="let subTask of item?.subtasks"></app-todo-item>
 </div>
 
 <ng-template #readDesc>
-  <div [routerLink]="'/item/' + item?.id" class="todo-item__link">
+  <!-- <div [routerLink]="'/item/' + item?.id" class="todo-item__link">
+    {{item?.description}}
+  </div> -->
+  <div (click)="onOpenItemDialog()" class="todo-item__link">
     {{item?.description}}
   </div>
 </ng-template>

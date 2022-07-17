@@ -6,9 +6,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { TodoItemsService } from './todo/services/todo-items.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from './core/components/dialog/dialog.component';
-import { filter } from 'rxjs';
 import { MatDialogModule } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogResult } from './core/components/dialog/constants';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule,
     MatTabsModule,
     MatDialogModule,
-    /* BrowserAnimationsModule */
   ],
   standalone: true,
   templateUrl: './app.component.html',
@@ -34,8 +32,10 @@ export class AppComponent {
       width: '250px',
     });
 
-    dialogRef.afterClosed().pipe(filter(Boolean)).subscribe((result: boolean) => {
-      this.createNewDay();
+    dialogRef.afterClosed().subscribe((result: DialogResult) => {
+      if (result === DialogResult.Yes) {
+        this.createNewDay();
+      }
     });
   }
 

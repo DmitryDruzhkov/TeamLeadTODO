@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Delete file</h1>
+<h1 mat-dialog-title>Да придёт новый день</h1>
 <div mat-dialog-content>
-  Would you like to delete cat.jpeg?
+  Запустить новый день?
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+  <button (click)="onNoClicked()" mat-button mat-dialog-close>Не трогать</button>
+  <button (click)="onYesClicked()" mat-button mat-dialog-close cdkFocusInitial>Конечно</button>
 </div>

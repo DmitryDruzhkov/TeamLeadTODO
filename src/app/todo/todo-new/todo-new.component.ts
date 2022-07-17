@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TodoItemsService } from '../services/todo-items.service';
 import { createTask } from '../shared/todo-helper';
 import { TodoNewInputComponent } from '../todo-new-input/todo-new-input.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-todo-new',
@@ -10,6 +11,7 @@ import { TodoNewInputComponent } from '../todo-new-input/todo-new-input.componen
   imports: [
     CommonModule,
     TodoNewInputComponent,
+    MatDividerModule,
   ],
   templateUrl: './todo-new.component.html',
   styleUrls: ['./todo-new.component.scss'],

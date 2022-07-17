@@ -1,6 +1,7 @@
 .todo-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 18px 0;
 
   &__label {
@@ -18,5 +19,9 @@
 
   &__subtask {
     padding-left: 16px;
+  }
+
+  &__divider {
+    margin-bottom: 8px;
   }
 }
