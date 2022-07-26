@@ -1,7 +1,7 @@
 <div class="todo-item">
   <div class="todo-item__label">
     <mat-checkbox 
-      [checked]="item?.complited"
+      [checked]="item?.state === todoStates.COMPLITED"
       (change)="onSetComplite()">
     </mat-checkbox>
     <ng-container *ngTemplateOutlet="item?.description ? readDesc : writeDesk"></ng-container>
@@ -28,13 +28,10 @@
 </ng-container>
 <app-todo-new-input *ngIf="isCreateSubTusk$ | async" [isInitFocus]="true" (createItem)="onCreateSubTask($event)"></app-todo-new-input>
 <div class="todo-item__subtask">
-  <app-todo-item [item]="subTask" *ngFor="let subTask of item?.subtasks"></app-todo-item>
+  <app-todo-item [item]="subTask" (delete)="onDelete(i)" *ngFor="let subTask of item?.subtasks; let i = index"></app-todo-item>
 </div>
 
 <ng-template #readDesc>
-  <!-- <div [routerLink]="'/item/' + item?.id" class="todo-item__link">
-    {{item?.description}}
-  </div> -->
   <div (click)="onOpenItemDialog()" class="todo-item__link">
     {{item?.description}}
   </div>

@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoItem } from '../todo/shared/interfaces';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-todo-item-detail',
@@ -11,5 +12,15 @@ import { TodoItem } from '../todo/shared/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoItemDetailComponent {
-  @Input() item: TodoItem;
+  @Output() deleteItem: EventEmitter<null> = new EventEmitter();
+
+  public item: TodoItem;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    this.item = this.data.item
+  }
+
+  public onDeleteItem(): void {
+    this.deleteItem.emit();
+  }
 }

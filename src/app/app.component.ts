@@ -27,7 +27,7 @@ export class AppComponent {
   public dialog: MatDialog = inject(MatDialog);
   private todoItemsService = inject(TodoItemsService);
 
-  public onOpenDialog(): void {
+  /* public onOpenDialog(): void {
     const dialogRef: MatDialogRef<DialogComponent, any> = this.dialog.open(DialogComponent, {
       width: '250px',
     });
@@ -37,9 +37,9 @@ export class AppComponent {
         this.createNewDay();
       }
     });
-  }
+  } */
 
-  private createNewDay(): void {
+  /* private createNewDay(): void {
     this.todoItemsService.createNewDay();
-  }
+  } */
 }

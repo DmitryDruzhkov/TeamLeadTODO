@@ -18,17 +18,15 @@ import { TodoNewComponent } from '../todo-new/todo-new.component';
   styleUrls: ['./todo-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent {
 
   public items$: Observable<TodoItem[]> = inject(TodoItemsService).todayItems$;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  trackBy(id: number, item: TodoItem): number {
+ 
+  public trackBy(id: number, item: TodoItem): number {
     return item.id;
   }
 
+  public onDelete(item: TodoItem): void {
+
+  }
 }

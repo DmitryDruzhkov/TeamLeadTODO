@@ -1,0 +1,6 @@
+<app-todo-item 
+  [item]="item"
+  (delete)="onDelete(item)"
+  *ngFor="let item of items; trackBy:trackBy"
+  
+></app-todo-item>

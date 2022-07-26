@@ -1,36 +1,38 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { TodoStates } from '../shared/constants';
 import { TodoItem } from '../shared/interfaces';
-import { backlogTodoItemsMock, historyTodoItemsMock, todoItemsMock } from '../shared/moc';
+import { todoItemsMock } from '../shared/moc';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoItemsService {
 
-  public todayItems$: BehaviorSubject<TodoItem[]> = new BehaviorSubject(todoItemsMock);
-  public historyItems$: BehaviorSubject<TodoItem[]> = new BehaviorSubject(historyTodoItemsMock);
-  public backlogItems$: BehaviorSubject<TodoItem[]> = new BehaviorSubject(backlogTodoItemsMock);
-
-  constructor() { }
+  public allTodoItems$: BehaviorSubject<TodoItem[]> = new BehaviorSubject(todoItemsMock);
+  
+  public todayItems$: Observable<TodoItem[]> = this.allTodoItems$.pipe(map((items: TodoItem[]) => this.getTodayItems(items)));
+  public historyItems$: Observable<TodoItem[]> = this.allTodoItems$.pipe(map((items: TodoItem[]) => this.getHistoryItems(items)));
+  public backlogItems$: Observable<TodoItem[]> = this.allTodoItems$.pipe(map((items: TodoItem[]) => this.getBacklogItems(items)));
 
   public addItem(item: TodoItem): void {
-    this.todayItems$.next([...this.todayItems$.getValue().concat([item])])
+    this.allTodoItems$.next([...this.allTodoItems$.getValue().concat([item])])
   }
 
-  public createNewDay(): void {
-    const newDeayItem: TodoItem[] = [];
-    const closedItems: TodoItem[] = [];
-    
-    this.todayItems$.getValue().forEach((item: TodoItem) => {
-      if (item.complited) {
-        closedItems.push(item);
-      } else {
-        newDeayItem.push(item);
-      }
-    });
+  public deleteItem(itemIndex: number): void {
+    this.allTodoItems$.next(this.allTodoItems$.getValue().splice(itemIndex, 1))
+  }
 
-    this.historyItems$.next([...this.historyItems$.getValue(), ...closedItems]);
-    this.todayItems$.next(newDeayItem);
+  private getTodayItems(items: TodoItem[]): TodoItem[] {
+    const today = new Date().setHours(0, 0, 0, 0);
+    return items.filter((item) => item.state === TodoStates.IN_PROGRESS || item.complitedDay === today);
+  }
+
+  private getHistoryItems(items: TodoItem[]): TodoItem[] {
+    return items.filter((item) => item.state === TodoStates.COMPLITED);
+  }
+
+  private getBacklogItems(items: TodoItem[]): TodoItem[] {
+    return items.filter((item) => item.state === TodoStates.BACKLOG);
   }
 }
