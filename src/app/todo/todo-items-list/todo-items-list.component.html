@@ -1,6 +1,10 @@
-<app-todo-item 
-  [item]="item"
-  (delete)="onDelete(item)"
-  *ngFor="let item of items; trackBy:trackBy"
-  
-></app-todo-item>
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <app-todo-item 
+    [item]="item"
+    (delete)="onDelete(item)"
+    *ngFor="let item of items; trackBy:trackBy"
+    cdkDrag
+    class="example-box"
+  ></app-todo-item>
+</div>
+

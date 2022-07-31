@@ -12,7 +12,7 @@ import { TodoNewComponent } from '../todo/todo-new/todo-new.component';
   imports: [
     CommonModule,
     TodoNewComponent,
-    /* TodoItemsListComponent, */
+    TodoItemsListComponent,
     TodoItemComponent
   ],
   selector: 'app-main-page',

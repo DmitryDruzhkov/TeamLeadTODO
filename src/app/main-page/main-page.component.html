@@ -1,6 +1,7 @@
 <app-todo-new></app-todo-new>
-<app-todo-item 
+<!-- <app-todo-item 
   [item]="item"
   (delete)="onDelete(i)"
   *ngFor="let item of items$ | async; trackBy:trackBy; let i = index"
-></app-todo-item>
+></app-todo-item> -->
+<app-todo-items-list *ngIf="(items$ | async) as items" [items]="items"></app-todo-items-list>

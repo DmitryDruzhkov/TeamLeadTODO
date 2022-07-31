@@ -22,13 +22,22 @@
     </button>
   </div>
 </div>
-<mat-divider class="todo-item__divider"></mat-divider>
+<!-- <mat-divider class="todo-item__divider"></mat-divider> -->
 <ng-container>
 
 </ng-container>
 <app-todo-new-input *ngIf="isCreateSubTusk$ | async" [isInitFocus]="true" (createItem)="onCreateSubTask($event)"></app-todo-new-input>
-<div class="todo-item__subtask">
-  <app-todo-item [item]="subTask" (delete)="onDelete(i)" *ngFor="let subTask of item?.subtasks; let i = index"></app-todo-item>
+<!-- <div class="todo-item__subtask">
+  <app-todo-item cdkDrag [item]="subTask" (delete)="onDelete(i)" *ngFor="let subTask of item?.subtasks; let i = index"></app-todo-item>
+</div> -->
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <app-todo-item 
+    [item]="item"
+    (delete)="onDelete(i)"
+    *ngFor="let item of item?.subtasks; let i = index"
+    cdkDrag
+    class="example-box"
+  ></app-todo-item>
 </div>
 
 <ng-template #readDesc>

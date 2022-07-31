@@ -14,6 +14,7 @@ import { TodoItemDetailComponent } from 'src/app/todo-item-detail/todo-item-deta
 import { TodoStates } from '../shared/constants';
 import { TodoItemsService } from '../services/todo-items.service';
 import { TodoItemsListComponent } from '../todo-items-list/todo-items-list.component';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   standalone: true,
@@ -26,6 +27,7 @@ import { TodoItemsListComponent } from '../todo-items-list/todo-items-list.compo
     MatButtonModule,
     TodoNewInputComponent,
     TodoItemDetailComponent,
+    DragDropModule,
     /* TodoItemsListComponent, */
   ],
   selector: 'app-todo-item',
@@ -50,7 +52,7 @@ export class TodoItemComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.dialogSubscribe.unsubscribe();
+    this.dialogSubscribe?.unsubscribe();
   }
 
   public onSetComplite(): void {
@@ -87,7 +89,12 @@ export class TodoItemComponent implements OnInit, OnDestroy {
       /* this.todoItemsService.deleteItem(this.item); */
       this.delete.emit();
       dialogRef.close();
-      this.dialogSubscribe.unsubscribe();
+      this.dialogSubscribe?.unsubscribe();
     })
+  }
+
+  public drop(event: CdkDragDrop<TodoItem[]>) {
+    moveItemInArray(this.item?.subtasks, event.previousIndex, event.currentIndex);
+    console.log(this.item?.subtasks);
   }
 }
